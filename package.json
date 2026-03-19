@@ -1,0 +1,72 @@
+{
+  "name": "obs-ws-sdk",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "A high-level TypeScript SDK for OBS WebSocket with full type safety and runtime validation",
+  "license": "MIT",
+  "homepage": "https://github.com/RSoraM/obs-ws-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RSoraM/obs-ws-sdk"
+  },
+  "keywords": [
+    "obs",
+    "obs-websocket",
+    "obs-studio",
+    "streaming",
+    "typescript",
+    "sdk"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "postbuild": "tsc",
+    "dev": "unbuild --stub",
+    "lint": "biome check --write",
+    "prepublishOnly": "pnpm run build",
+    "release": "bumpp && npm publish",
+    "start": "tsx src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks",
+    "test:integration": "npx tsx scripts/integration-test.ts",
+    "test:coverage": "npx tsx scripts/schema-coverage.ts"
+  },
+  "dependencies": {
+    "obs-websocket-js": "^5.0.6",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.0",
+    "@types/node": "^25.5.0",
+    "bumpp": "^10.1.0",
+    "changelogithub": "^13.0.0",
+    "dotenv": "^17.3.1",
+    "lint-staged": "^16.0.0",
+    "simple-git-hooks": "^2.12.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0",
+    "unbuild": "^3.5.0",
+    "vitest": "^3.1.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "biome check --write --no-errors-on-unmatched"
+  },
+  "packageManager": "pnpm@10.6.0"
+}

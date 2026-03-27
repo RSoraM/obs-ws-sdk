@@ -91,6 +91,37 @@ export type TriggerHotkeyByKeySequenceRequest = z.infer<typeof TriggerHotkeyByKe
 // ========================
 
 export class GeneralModule extends BaseModule {
+  static schemas = {
+    getVersion: {
+      request: z.void(),
+      response: GetVersionResponseSchema,
+    },
+    getStats: {
+      request: z.void(),
+      response: GetStatsResponseSchema,
+    },
+    broadcastCustomEvent: {
+      request: BroadcastCustomEventRequestSchema,
+      response: z.void(),
+    },
+    callVendorRequest: {
+      request: CallVendorRequestRequestSchema,
+      response: CallVendorRequestResponseSchema,
+    },
+    getHotkeyList: {
+      request: z.void(),
+      response: GetHotkeyListResponseSchema,
+    },
+    triggerHotkeyByName: {
+      request: TriggerHotkeyByNameRequestSchema,
+      response: z.void(),
+    },
+    triggerHotkeyByKeySequence: {
+      request: TriggerHotkeyByKeySequenceRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getVersion(): Promise<GetVersionResponse> {
     const res = await this.obs.call("GetVersion");
     return GetVersionResponseSchema.parse(res);

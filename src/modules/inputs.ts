@@ -289,6 +289,121 @@ export type PressInputPropertiesButtonRequest = z.infer<typeof PressInputPropert
 // ========================
 
 export class InputsModule extends BaseModule {
+  static schemas = {
+    getInputList: {
+      request: GetInputListRequestSchema,
+      response: GetInputListResponseSchema,
+    },
+    getInputKindList: {
+      request: GetInputKindListRequestSchema,
+      response: GetInputKindListResponseSchema,
+    },
+    getSpecialInputs: {
+      request: z.void(),
+      response: GetSpecialInputsResponseSchema,
+    },
+    createInput: {
+      request: CreateInputRequestSchema,
+      response: CreateInputResponseSchema,
+    },
+    removeInput: {
+      request: RemoveInputRequestSchema,
+      response: z.void(),
+    },
+    setInputName: {
+      request: SetInputNameRequestSchema,
+      response: z.void(),
+    },
+    getInputDefaultSettings: {
+      request: GetInputDefaultSettingsRequestSchema,
+      response: GetInputDefaultSettingsResponseSchema,
+    },
+    getInputSettings: {
+      request: GetInputSettingsRequestSchema,
+      response: GetInputSettingsResponseSchema,
+    },
+    setInputSettings: {
+      request: SetInputSettingsRequestSchema,
+      response: z.void(),
+    },
+    getInputMute: {
+      request: GetInputMuteRequestSchema,
+      response: GetInputMuteResponseSchema,
+    },
+    setInputMute: {
+      request: SetInputMuteRequestSchema,
+      response: z.void(),
+    },
+    toggleInputMute: {
+      request: ToggleInputMuteRequestSchema,
+      response: ToggleInputMuteResponseSchema,
+    },
+    getInputVolume: {
+      request: GetInputVolumeRequestSchema,
+      response: GetInputVolumeResponseSchema,
+    },
+    setInputVolume: {
+      request: SetInputVolumeRequestSchema,
+      response: z.void(),
+    },
+    getInputAudioBalance: {
+      request: GetInputAudioBalanceRequestSchema,
+      response: GetInputAudioBalanceResponseSchema,
+    },
+    setInputAudioBalance: {
+      request: SetInputAudioBalanceRequestSchema,
+      response: z.void(),
+    },
+    getInputAudioSyncOffset: {
+      request: GetInputAudioSyncOffsetRequestSchema,
+      response: GetInputAudioSyncOffsetResponseSchema,
+    },
+    setInputAudioSyncOffset: {
+      request: SetInputAudioSyncOffsetRequestSchema,
+      response: z.void(),
+    },
+    getInputAudioMonitorType: {
+      request: GetInputAudioMonitorTypeRequestSchema,
+      response: GetInputAudioMonitorTypeResponseSchema,
+    },
+    setInputAudioMonitorType: {
+      request: SetInputAudioMonitorTypeRequestSchema,
+      response: z.void(),
+    },
+    getInputAudioTracks: {
+      request: GetInputAudioTracksRequestSchema,
+      response: GetInputAudioTracksResponseSchema,
+    },
+    setInputAudioTracks: {
+      request: SetInputAudioTracksRequestSchema,
+      response: z.void(),
+    },
+    getInputDeinterlaceMode: {
+      request: GetInputDeinterlaceModeRequestSchema,
+      response: GetInputDeinterlaceModeResponseSchema,
+    },
+    setInputDeinterlaceMode: {
+      request: SetInputDeinterlaceModeRequestSchema,
+      response: z.void(),
+    },
+    getInputDeinterlaceFieldOrder: {
+      request: GetInputDeinterlaceFieldOrderRequestSchema,
+      response: GetInputDeinterlaceFieldOrderResponseSchema,
+    },
+    setInputDeinterlaceFieldOrder: {
+      request: SetInputDeinterlaceFieldOrderRequestSchema,
+      response: z.void(),
+    },
+    getInputPropertiesListPropertyItems: {
+      request: GetInputPropertiesListPropertyItemsRequestSchema,
+      response: GetInputPropertiesListPropertyItemsResponseSchema,
+    },
+    pressInputPropertiesButton: {
+      request: PressInputPropertiesButtonRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getInputList(params?: GetInputListRequest): Promise<GetInputListResponse> {
     if (params) GetInputListRequestSchema.parse(params);
     const res = await this.obs.call("GetInputList", params);

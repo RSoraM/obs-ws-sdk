@@ -156,6 +156,77 @@ export type SetSceneItemBlendModeRequest = z.infer<typeof SetSceneItemBlendModeR
 // ========================
 
 export class SceneItemsModule extends BaseModule {
+  static schemas = {
+    getSceneItemList: {
+      request: GetSceneItemListRequestSchema,
+      response: GetSceneItemListResponseSchema,
+    },
+    getGroupSceneItemList: {
+      request: GetGroupSceneItemListRequestSchema,
+      response: GetGroupSceneItemListResponseSchema,
+    },
+    getSceneItemId: {
+      request: GetSceneItemIdRequestSchema,
+      response: GetSceneItemIdResponseSchema,
+    },
+    getSceneItemSource: {
+      request: GetSceneItemSourceRequestSchema,
+      response: GetSceneItemSourceResponseSchema,
+    },
+    createSceneItem: {
+      request: CreateSceneItemRequestSchema,
+      response: CreateSceneItemResponseSchema,
+    },
+    removeSceneItem: {
+      request: RemoveSceneItemRequestSchema,
+      response: z.void(),
+    },
+    duplicateSceneItem: {
+      request: DuplicateSceneItemRequestSchema,
+      response: DuplicateSceneItemResponseSchema,
+    },
+    getSceneItemTransform: {
+      request: GetSceneItemTransformRequestSchema,
+      response: GetSceneItemTransformResponseSchema,
+    },
+    setSceneItemTransform: {
+      request: SetSceneItemTransformRequestSchema,
+      response: z.void(),
+    },
+    getSceneItemEnabled: {
+      request: GetSceneItemEnabledRequestSchema,
+      response: GetSceneItemEnabledResponseSchema,
+    },
+    setSceneItemEnabled: {
+      request: SetSceneItemEnabledRequestSchema,
+      response: z.void(),
+    },
+    getSceneItemLocked: {
+      request: GetSceneItemLockedRequestSchema,
+      response: GetSceneItemLockedResponseSchema,
+    },
+    setSceneItemLocked: {
+      request: SetSceneItemLockedRequestSchema,
+      response: z.void(),
+    },
+    getSceneItemIndex: {
+      request: GetSceneItemIndexRequestSchema,
+      response: GetSceneItemIndexResponseSchema,
+    },
+    setSceneItemIndex: {
+      request: SetSceneItemIndexRequestSchema,
+      response: z.void(),
+    },
+    getSceneItemBlendMode: {
+      request: GetSceneItemBlendModeRequestSchema,
+      response: GetSceneItemBlendModeResponseSchema,
+    },
+    setSceneItemBlendMode: {
+      request: SetSceneItemBlendModeRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getSceneItemList(params: GetSceneItemListRequest): Promise<GetSceneItemListResponse> {
     GetSceneItemListRequestSchema.parse(params);
     const res = await this.obs.call("GetSceneItemList", params);

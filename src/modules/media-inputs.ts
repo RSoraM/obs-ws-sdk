@@ -53,6 +53,25 @@ export type TriggerMediaInputActionRequest = z.infer<typeof TriggerMediaInputAct
 // ========================
 
 export class MediaInputsModule extends BaseModule {
+  static schemas = {
+    getMediaInputStatus: {
+      request: GetMediaInputStatusRequestSchema,
+      response: GetMediaInputStatusResponseSchema,
+    },
+    setMediaInputCursor: {
+      request: SetMediaInputCursorRequestSchema,
+      response: z.void(),
+    },
+    offsetMediaInputCursor: {
+      request: OffsetMediaInputCursorRequestSchema,
+      response: z.void(),
+    },
+    triggerMediaInputAction: {
+      request: TriggerMediaInputActionRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getMediaInputStatus(params: GetMediaInputStatusRequest): Promise<GetMediaInputStatusResponse> {
     GetMediaInputStatusRequestSchema.parse(params);
     const res = await this.obs.call("GetMediaInputStatus", params);

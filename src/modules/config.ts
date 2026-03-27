@@ -135,6 +135,77 @@ export type SetRecordDirectoryRequest = z.infer<typeof SetRecordDirectoryRequest
 // ========================
 
 export class ConfigModule extends BaseModule {
+  static schemas = {
+    getPersistentData: {
+      request: GetPersistentDataRequestSchema,
+      response: GetPersistentDataResponseSchema,
+    },
+    setPersistentData: {
+      request: SetPersistentDataRequestSchema,
+      response: z.void(),
+    },
+    getSceneCollectionList: {
+      request: z.void(),
+      response: GetSceneCollectionListResponseSchema,
+    },
+    setCurrentSceneCollection: {
+      request: SetCurrentSceneCollectionRequestSchema,
+      response: z.void(),
+    },
+    createSceneCollection: {
+      request: CreateSceneCollectionRequestSchema,
+      response: z.void(),
+    },
+    getProfileList: {
+      request: z.void(),
+      response: GetProfileListResponseSchema,
+    },
+    setCurrentProfile: {
+      request: SetCurrentProfileRequestSchema,
+      response: z.void(),
+    },
+    createProfile: {
+      request: CreateProfileRequestSchema,
+      response: z.void(),
+    },
+    removeProfile: {
+      request: RemoveProfileRequestSchema,
+      response: z.void(),
+    },
+    getProfileParameter: {
+      request: GetProfileParameterRequestSchema,
+      response: GetProfileParameterResponseSchema,
+    },
+    setProfileParameter: {
+      request: SetProfileParameterRequestSchema,
+      response: z.void(),
+    },
+    getVideoSettings: {
+      request: z.void(),
+      response: GetVideoSettingsResponseSchema,
+    },
+    setVideoSettings: {
+      request: SetVideoSettingsRequestSchema,
+      response: z.void(),
+    },
+    getStreamServiceSettings: {
+      request: z.void(),
+      response: GetStreamServiceSettingsResponseSchema,
+    },
+    setStreamServiceSettings: {
+      request: SetStreamServiceSettingsRequestSchema,
+      response: z.void(),
+    },
+    getRecordDirectory: {
+      request: z.void(),
+      response: GetRecordDirectoryResponseSchema,
+    },
+    setRecordDirectory: {
+      request: SetRecordDirectoryRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getPersistentData(params: GetPersistentDataRequest): Promise<GetPersistentDataResponse> {
     GetPersistentDataRequestSchema.parse(params);
     const res = await this.obs.call("GetPersistentData", params);

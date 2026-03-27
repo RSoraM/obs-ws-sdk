@@ -43,6 +43,45 @@ export type CreateRecordChapterRequest = z.infer<typeof CreateRecordChapterReque
 // ========================
 
 export class RecordModule extends BaseModule {
+  static schemas = {
+    getRecordStatus: {
+      request: z.void(),
+      response: GetRecordStatusResponseSchema,
+    },
+    toggleRecord: {
+      request: z.void(),
+      response: ToggleRecordResponseSchema,
+    },
+    startRecord: {
+      request: z.void(),
+      response: z.void(),
+    },
+    stopRecord: {
+      request: z.void(),
+      response: StopRecordResponseSchema,
+    },
+    toggleRecordPause: {
+      request: z.void(),
+      response: z.void(),
+    },
+    pauseRecord: {
+      request: z.void(),
+      response: z.void(),
+    },
+    resumeRecord: {
+      request: z.void(),
+      response: z.void(),
+    },
+    splitRecordFile: {
+      request: z.void(),
+      response: z.void(),
+    },
+    createRecordChapter: {
+      request: CreateRecordChapterRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getRecordStatus(): Promise<GetRecordStatusResponse> {
     const res = await this.obs.call("GetRecordStatus");
     return GetRecordStatusResponseSchema.parse(res);

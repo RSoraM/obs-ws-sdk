@@ -68,6 +68,41 @@ export type OpenSourceProjectorRequest = z.infer<typeof OpenSourceProjectorReque
 // ========================
 
 export class UiModule extends BaseModule {
+  static schemas = {
+    getStudioModeEnabled: {
+      request: z.void(),
+      response: GetStudioModeEnabledResponseSchema,
+    },
+    setStudioModeEnabled: {
+      request: SetStudioModeEnabledRequestSchema,
+      response: z.void(),
+    },
+    openInputPropertiesDialog: {
+      request: OpenInputPropertiesDialogRequestSchema,
+      response: z.void(),
+    },
+    openInputFiltersDialog: {
+      request: OpenInputFiltersDialogRequestSchema,
+      response: z.void(),
+    },
+    openInputInteractDialog: {
+      request: OpenInputInteractDialogRequestSchema,
+      response: z.void(),
+    },
+    getMonitorList: {
+      request: z.void(),
+      response: GetMonitorListResponseSchema,
+    },
+    openVideoMixProjector: {
+      request: OpenVideoMixProjectorRequestSchema,
+      response: z.void(),
+    },
+    openSourceProjector: {
+      request: OpenSourceProjectorRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getStudioModeEnabled(): Promise<GetStudioModeEnabledResponse> {
     const res = await this.obs.call("GetStudioModeEnabled");
     return GetStudioModeEnabledResponseSchema.parse(res);

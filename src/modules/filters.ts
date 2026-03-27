@@ -118,6 +118,49 @@ export type SetSourceFilterEnabledRequest = z.infer<typeof SetSourceFilterEnable
 // ========================
 
 export class FiltersModule extends BaseModule {
+  static schemas = {
+    getSourceFilterKindList: {
+      request: z.void(),
+      response: GetSourceFilterKindListResponseSchema,
+    },
+    getSourceFilterList: {
+      request: GetSourceFilterListRequestSchema,
+      response: GetSourceFilterListResponseSchema,
+    },
+    getSourceFilterDefaultSettings: {
+      request: GetSourceFilterDefaultSettingsRequestSchema,
+      response: GetSourceFilterDefaultSettingsResponseSchema,
+    },
+    createSourceFilter: {
+      request: CreateSourceFilterRequestSchema,
+      response: z.void(),
+    },
+    removeSourceFilter: {
+      request: RemoveSourceFilterRequestSchema,
+      response: z.void(),
+    },
+    setSourceFilterName: {
+      request: SetSourceFilterNameRequestSchema,
+      response: z.void(),
+    },
+    getSourceFilter: {
+      request: GetSourceFilterRequestSchema,
+      response: GetSourceFilterResponseSchema,
+    },
+    setSourceFilterIndex: {
+      request: SetSourceFilterIndexRequestSchema,
+      response: z.void(),
+    },
+    setSourceFilterSettings: {
+      request: SetSourceFilterSettingsRequestSchema,
+      response: z.void(),
+    },
+    setSourceFilterEnabled: {
+      request: SetSourceFilterEnabledRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getSourceFilterKindList(): Promise<GetSourceFilterKindListResponse> {
     const res = await this.obs.call("GetSourceFilterKindList");
     return GetSourceFilterKindListResponseSchema.parse(res);

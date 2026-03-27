@@ -102,6 +102,77 @@ export type SetOutputSettingsRequest = z.infer<typeof SetOutputSettingsRequestSc
 // ========================
 
 export class OutputsModule extends BaseModule {
+  static schemas = {
+    getVirtualCamStatus: {
+      request: z.void(),
+      response: GetVirtualCamStatusResponseSchema,
+    },
+    toggleVirtualCam: {
+      request: z.void(),
+      response: ToggleVirtualCamResponseSchema,
+    },
+    startVirtualCam: {
+      request: z.void(),
+      response: z.void(),
+    },
+    stopVirtualCam: {
+      request: z.void(),
+      response: z.void(),
+    },
+    getReplayBufferStatus: {
+      request: z.void(),
+      response: GetReplayBufferStatusResponseSchema,
+    },
+    toggleReplayBuffer: {
+      request: z.void(),
+      response: ToggleReplayBufferResponseSchema,
+    },
+    startReplayBuffer: {
+      request: z.void(),
+      response: z.void(),
+    },
+    stopReplayBuffer: {
+      request: z.void(),
+      response: z.void(),
+    },
+    saveReplayBuffer: {
+      request: z.void(),
+      response: z.void(),
+    },
+    getLastReplayBufferReplay: {
+      request: z.void(),
+      response: GetLastReplayBufferReplayResponseSchema,
+    },
+    getOutputList: {
+      request: z.void(),
+      response: GetOutputListResponseSchema,
+    },
+    getOutputStatus: {
+      request: GetOutputStatusRequestSchema,
+      response: GetOutputStatusResponseSchema,
+    },
+    toggleOutput: {
+      request: ToggleOutputRequestSchema,
+      response: ToggleOutputResponseSchema,
+    },
+    startOutput: {
+      request: StartOutputRequestSchema,
+      response: z.void(),
+    },
+    stopOutput: {
+      request: StopOutputRequestSchema,
+      response: z.void(),
+    },
+    getOutputSettings: {
+      request: GetOutputSettingsRequestSchema,
+      response: GetOutputSettingsResponseSchema,
+    },
+    setOutputSettings: {
+      request: SetOutputSettingsRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getVirtualCamStatus(): Promise<GetVirtualCamStatusResponse> {
     const res = await this.obs.call("GetVirtualCamStatus");
     return GetVirtualCamStatusResponseSchema.parse(res);

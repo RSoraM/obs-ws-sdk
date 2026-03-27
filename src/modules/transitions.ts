@@ -70,6 +70,45 @@ export type SetTBarPositionRequest = z.infer<typeof SetTBarPositionRequestSchema
 // ========================
 
 export class TransitionsModule extends BaseModule {
+  static schemas = {
+    getTransitionKindList: {
+      request: z.void(),
+      response: GetTransitionKindListResponseSchema,
+    },
+    getSceneTransitionList: {
+      request: z.void(),
+      response: GetSceneTransitionListResponseSchema,
+    },
+    getCurrentSceneTransition: {
+      request: z.void(),
+      response: GetCurrentSceneTransitionResponseSchema,
+    },
+    setCurrentSceneTransition: {
+      request: SetCurrentSceneTransitionRequestSchema,
+      response: z.void(),
+    },
+    setCurrentSceneTransitionDuration: {
+      request: SetCurrentSceneTransitionDurationRequestSchema,
+      response: z.void(),
+    },
+    setCurrentSceneTransitionSettings: {
+      request: SetCurrentSceneTransitionSettingsRequestSchema,
+      response: z.void(),
+    },
+    getCurrentSceneTransitionCursor: {
+      request: z.void(),
+      response: GetCurrentSceneTransitionCursorResponseSchema,
+    },
+    triggerStudioModeTransition: {
+      request: z.void(),
+      response: z.void(),
+    },
+    setTBarPosition: {
+      request: SetTBarPositionRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getTransitionKindList(): Promise<GetTransitionKindListResponse> {
     const res = await this.obs.call("GetTransitionKindList");
     return GetTransitionKindListResponseSchema.parse(res);

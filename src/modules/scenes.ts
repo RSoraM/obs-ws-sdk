@@ -114,6 +114,45 @@ export type SetSceneSceneTransitionOverrideRequest = z.infer<typeof SetSceneScen
 // ========================
 
 export class ScenesModule extends BaseModule {
+  static schemas = {
+    getSceneList: {
+      request: GetSceneListRequestSchema,
+      response: GetSceneListResponseSchema,
+    },
+    getGroupList: {
+      request: z.void(),
+      response: GetGroupListResponseSchema,
+    },
+    getCurrentProgramScene: {
+      request: z.void(),
+      response: GetCurrentProgramSceneResponseSchema,
+    },
+    setCurrentProgramScene: {
+      request: SetCurrentProgramSceneRequestSchema,
+      response: z.void(),
+    },
+    getCurrentPreviewScene: {
+      request: z.void(),
+      response: GetCurrentPreviewSceneResponseSchema,
+    },
+    setCurrentPreviewScene: {
+      request: SetCurrentPreviewSceneRequestSchema,
+      response: z.void(),
+    },
+    createScene: {
+      request: CreateSceneRequestSchema,
+      response: CreateSceneResponseSchema,
+    },
+    removeScene: {
+      request: RemoveSceneRequestSchema,
+      response: z.void(),
+    },
+    setSceneName: {
+      request: SetSceneNameRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getSceneList(params?: GetSceneListRequest): Promise<GetSceneListResponse> {
     if (params) GetSceneListRequestSchema.parse(params);
     const res = await this.obs.call("GetSceneList", params);

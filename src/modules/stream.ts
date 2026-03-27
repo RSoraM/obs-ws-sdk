@@ -41,6 +41,29 @@ export type SendStreamCaptionRequest = z.infer<typeof SendStreamCaptionRequestSc
 // ========================
 
 export class StreamModule extends BaseModule {
+  static schemas = {
+    getStreamStatus: {
+      request: z.void(),
+      response: GetStreamStatusResponseSchema,
+    },
+    toggleStream: {
+      request: z.void(),
+      response: ToggleStreamResponseSchema,
+    },
+    startStream: {
+      request: z.void(),
+      response: z.void(),
+    },
+    stopStream: {
+      request: z.void(),
+      response: z.void(),
+    },
+    sendStreamCaption: {
+      request: SendStreamCaptionRequestSchema,
+      response: z.void(),
+    },
+  } as const;
+
   async getStreamStatus(): Promise<GetStreamStatusResponse> {
     const res = await this.obs.call("GetStreamStatus");
     return GetStreamStatusResponseSchema.parse(res);

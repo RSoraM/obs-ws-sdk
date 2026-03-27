@@ -65,6 +65,25 @@ export type GetCanvasListResponse = z.infer<typeof GetCanvasListResponseSchema>;
 // ========================
 
 export class SourcesModule extends BaseModule {
+  static schemas = {
+    getSourceActive: {
+      request: GetSourceActiveRequestSchema,
+      response: GetSourceActiveResponseSchema,
+    },
+    getSourceScreenshot: {
+      request: GetSourceScreenshotRequestSchema,
+      response: GetSourceScreenshotResponseSchema,
+    },
+    saveSourceScreenshot: {
+      request: SaveSourceScreenshotRequestSchema,
+      response: z.void(),
+    },
+    getCanvasList: {
+      request: z.void(),
+      response: GetCanvasListResponseSchema,
+    },
+  } as const;
+
   async getSourceActive(params: GetSourceActiveRequest): Promise<GetSourceActiveResponse> {
     GetSourceActiveRequestSchema.parse(params);
     const res = await this.obs.call("GetSourceActive", params);

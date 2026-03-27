@@ -1,7 +1,7 @@
 {
   "name": "obs-ws-sdk",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "支持完整类型安全与运行时验证的 OBS WebSocket TypeScript SDK. TypeScript SDK for OBS WebSocket with full type safety and runtime validation.",
   "license": "MIT",
   "homepage": "https://github.com/RSoraM/obs-ws-sdk",
